@@ -23,7 +23,7 @@ export default {
   --white: #fff;
   --black: #000;
 
-  --green-50p: #80a66c;
+  --green-50p: rgba(128, 166, 108, 0.5);
 
   --green-100: #87906f;
   --green-400: #839b7e;
@@ -45,5 +45,11 @@ export default {
 a {
   text-decoration: none;
   color: var(--black);
+}
+
+.main-container {
+  height: calc(100vh - 12vh);
+  background-image: url("./assets/textura.png");
+  background-color: var(--green-50p);
 }
 </style>

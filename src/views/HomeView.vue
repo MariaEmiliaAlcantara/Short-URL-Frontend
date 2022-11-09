@@ -1,5 +1,5 @@
 <template>
-  <div class="home">Teste</div>
+  <div class="main-container">Teste</div>
 </template>
 
 <script>
@@ -11,9 +11,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.home {
-  background-image: url("../assets/textura.png");
-  height: calc(100vh - 12vh);
-}
-</style>
+<style scoped></style>
