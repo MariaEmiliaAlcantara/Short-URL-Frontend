@@ -1,14 +1,14 @@
 <template>
   <nav class="wrapper">
     <div class="logo">
-      <router-link to="/"><p>SHORT URL</p></router-link>
+      <router-link urlShorted="false" to="/"><p>SHORT URL</p></router-link>
     </div>
     <div class="links">
       <router-link to="/top-urls">TOP 100</router-link>
-      <router-link v-if="!user" to="/login">SIGN UP</router-link>
-      <router-link v-if="!user" to="/signup">LOGIN</router-link>
-      <router-link v-if="user" to="/signup">SEUS LINKS</router-link>
-      <router-link v-if="user" to="/signup">LOGOUT</router-link>
+      <router-link v-if="!user" to="/signup">SIGN UP</router-link>
+      <router-link v-if="!user" to="/login">LOGIN</router-link>
+      <router-link v-if="user" to="/userUrls">SEUS LINKS</router-link>
+      <router-link v-if="user" to="/">LOGOUT</router-link>
     </div>
   </nav>
   <router-view />

@@ -1,3 +1,103 @@
 <template>
-  <div class="main-container">Sign Up</div>
+  <main class="main-wrapper">
+    <div class="main-container">
+      <h3>Bem vindo!</h3>
+      <label
+        >Nome completo
+        <input type="text" placeholder="Digite o seu nome completo" />
+      </label>
+      <label
+        >Email
+        <input type="text" placeholder="Endereço de e-mail" />
+      </label>
+      <div class="password">
+        <label
+          >Senha
+          <input type="password" placeholder="Digite a sua senha" />
+        </label>
+        <label
+          >Confirmar senha
+          <input type="password" placeholder="Repita a senha " />
+        </label>
+      </div>
+      <button type="submit">Cadastrar-se</button>
+    </div>
+  </main>
 </template>
+
+<style scoped>
+.main-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.main-container {
+  width: 30vw;
+  height: 68vh;
+  margin-top: 7vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 3vh;
+  background-color: var(--white);
+  border-radius: 28px;
+}
+
+.main-container h3 {
+  margin-top: 5vh;
+  font-size: 2rem;
+  color: var(--green-600);
+}
+
+.main-container label {
+  display: flex;
+  flex-direction: column;
+  width: 23vw;
+  font-size: 0.875rem;
+  color: var(--green-600);
+  font-weight: bold;
+}
+
+.main-container input {
+  height: 7vh;
+  outline: none;
+  border: 1px solid var(--brown-100);
+  border-radius: 8px;
+  padding: 0 1vw;
+  font-size: 0.75rem;
+  margin-top: 2px;
+}
+
+.password {
+  width: 23vw;
+  display: flex;
+  gap: 1vw;
+}
+
+.password label {
+  width: 11vw;
+}
+.main-container input:focus {
+  border: 2px solid var(--green-400);
+  color: var(--black);
+}
+
+.main-container button {
+  width: 23vw;
+  height: 7vh;
+  background-color: var(--green-600);
+  color: var(--white);
+  font-size: 1.125rem;
+  border: none;
+  border-radius: 28px;
+  transition: background-color 0.5s;
+  margin-top: 1vh;
+}
+
+.main-container button:hover {
+  background-color: var(--green-400);
+}
+</style>

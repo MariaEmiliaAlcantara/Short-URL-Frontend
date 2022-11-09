@@ -47,7 +47,7 @@ a {
   color: var(--black);
 }
 
-.main-container {
+.main-wrapper {
   height: calc(100vh - 12vh);
   background-image: url("./assets/textura.png");
   background-color: var(--green-50p);
