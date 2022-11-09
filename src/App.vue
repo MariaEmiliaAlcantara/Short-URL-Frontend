@@ -1,12 +1,22 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link>
-    <router-link to="/top-urls">Top 100</router-link>
-    <router-link to="/login">Login</router-link>
-    <router-link to="/signup">Sign up</router-link>
-  </nav>
-  <router-view />
+  <div>
+    <NavbarVue />
+    <FooterVue />
+  </div>
 </template>
+
+<script>
+import NavbarVue from "./components/Navbar.vue";
+import FooterVue from "./components/Footer.vue";
+
+export default {
+  name: "App",
+  components: {
+    NavbarVue,
+    FooterVue,
+  },
+};
+</script>
 
 <style>
 :root {
@@ -30,5 +40,10 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Be Vietnam Pro", sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: var(--black);
 }
 </style>

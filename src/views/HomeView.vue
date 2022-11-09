@@ -1,15 +1,19 @@
 <template>
-  <div class="home"></div>
+  <div class="home">Teste</div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HeaderVue from "@/components/Header.vue";
+import NavbarVue from "@/components/Navbar.vue";
 
 export default {
   name: "HomeView",
-  components: {
-    HeaderVue,
-  },
 };
 </script>
+
+<style scoped>
+.home {
+  background-image: url("../assets/textura.png");
+  height: calc(100vh - 12vh);
+}
+</style>
