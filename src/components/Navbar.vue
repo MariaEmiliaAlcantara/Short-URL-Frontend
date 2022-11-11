@@ -18,7 +18,9 @@
 export default {
   name: "Navbar",
   data() {
-    user: false;
+    return {
+      user: false,
+    };
   },
 };
 </script>

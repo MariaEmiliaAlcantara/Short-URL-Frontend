@@ -1,19 +1,45 @@
 <template>
   <main class="main-wrapper">
-    <div class="main-container">
+    <form @submit.prevent="handleSubmit" class="main-container">
       <h3>Bem vindo!</h3>
       <label
         >Email
-        <input type="text" placeholder="Endereço de e-mail" />
+        <input type="email" v-model="email" placeholder="Endereço de e-mail" />
       </label>
       <label
         >Senha
-        <input type="password" placeholder="Digite a sua senha" />
+        <input
+          type="password"
+          v-model="password"
+          placeholder="Digite a sua senha"
+        />
       </label>
       <button type="submit">Log in</button>
-    </div>
+    </form>
   </main>
 </template>
+
+<script>
+import axios from "axios";
+
+export default {
+  name: "LoginView",
+  data() {
+    return {
+      email: "",
+      password: "",
+    };
+  },
+  methods: {
+    async handleSubmit() {
+      await axios.post("login", {
+        email: this.email,
+        password: this.password,
+      });
+    },
+  },
+};
+</script>
 
 <style scoped>
 .main-wrapper {

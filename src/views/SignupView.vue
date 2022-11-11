@@ -1,29 +1,78 @@
 <template>
   <main class="main-wrapper">
-    <div class="main-container">
+    <form @submit.prevent="handleSubmit" class="main-container">
       <h3>Bem vindo!</h3>
       <label
         >Nome completo
-        <input type="text" placeholder="Digite o seu nome completo" />
+        <input
+          type="text"
+          v-model="name"
+          placeholder="Digite o seu nome completo"
+        />
       </label>
       <label
         >Email
-        <input type="text" placeholder="Endereço de e-mail" />
+        <input type="email" v-model="email" placeholder="Endereço de e-mail" />
       </label>
       <div class="password">
         <label
           >Senha
-          <input type="password" placeholder="Digite a sua senha" />
+          <input
+            type="password"
+            v-model="password"
+            placeholder="Digite a sua senha"
+          />
         </label>
         <label
           >Confirmar senha
-          <input type="password" placeholder="Repita a senha " />
+          <input
+            type="password"
+            v-model="password_confirm"
+            placeholder="Repita a senha "
+          />
         </label>
       </div>
-      <button type="submit">Cadastrar-se</button>
-    </div>
+      <button :disabled="validatePassword()" type="submit">Cadastrar-se</button>
+    </form>
   </main>
 </template>
+
+<script>
+import axios from "axios";
+
+export default {
+  name: "Signup",
+  data() {
+    return {
+      name: "",
+      email: "",
+      password: "",
+      password_confirm: "",
+    };
+  },
+  methods: {
+    async handleSubmit() {
+      console.log("entrei no handle");
+      await axios.post("registerUser", {
+        name: this.name,
+        email: this.email,
+        password: this.password,
+      });
+
+      this.$router.push("/login");
+    },
+
+    validatePassword() {
+      if (this.password.length < 4 || this.password_confirm < 4) {
+        return true;
+      } else if (this.password === this.password_confirm) {
+        return false;
+      }
+      return true;
+    },
+  },
+};
+</script>
 
 <style scoped>
 .main-wrapper {
@@ -98,6 +147,10 @@
 }
 
 .main-container button:hover {
+  background-color: var(--green-400);
+}
+
+.main-container button:disabled {
   background-color: var(--green-400);
 }
 </style>
