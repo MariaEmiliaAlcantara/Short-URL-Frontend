@@ -2,25 +2,57 @@
   <main class="main-wrapper">
     <div class="main-container">
       <h1>Cole a URL abaixo</h1>
-      <div class="container-shortener">
-        <input type="text" placeholder="Coloque o link aqui" />
-        <button>Encurtar</button>
-      </div>
+      <form
+        class="container-shortener"
+        ref="form"
+        @submit.prevent="handleSubmit"
+      >
+        <input
+          type="text"
+          placeholder="Coloque o link aqui"
+          v-model="fullUrl"
+        />
+        <button type="submit">Encurtar</button>
+      </form>
       <p>Use nosso encurtador de URL para criar um link simples e curto</p>
     </div>
-    <div v-if="urlShort" class="short-url-container">
+    <div v-if="url.short" class="short-url-container">
       <h3>Muito bom! Aqui está a URL curta:</h3>
       <div class="result">
-        <p>www.google.com.br</p>
-        <p>hr.OjSnhg</p>
+        <a :href="url.full" target="_blank">{{ url.full }}</a>
+        <router-link :to="url.short" target="_blank"
+          >{{ prefixUrl }}{{ url.short }}</router-link
+        >
       </div>
     </div>
   </main>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "HomeView",
+  data() {
+    return {
+      prefixUrl: "http://localhost:8080/",
+      fullUrl: "",
+      url: {
+        full: "",
+        short: "",
+        clicks: 0,
+      },
+    };
+  },
+  methods: {
+    async handleSubmit(event) {
+      const response = await axios.post("shortUrls", {
+        full: this.fullUrl,
+      });
+      this.url = response.data;
+      event.target.value.reset();
+    },
+  },
 };
 </script>
 
@@ -111,14 +143,24 @@ export default {
 }
 
 .short-url-container .result {
-  width: 45vw;
+  width: 50vw;
   height: 8.5vh;
   display: flex;
   justify-content: space-around;
   align-items: center;
   background-color: var(--green-400);
-  color: var(--white);
-  font-size: 1.25rem;
+
+  font-size: 1.125rem;
   border-radius: 12px;
+}
+
+.result a {
+  color: var(--white);
+  text-decoration: underline;
+  transition: all 0.5s;
+}
+
+.result a:hover {
+  color: var(--green-600);
 }
 </style>

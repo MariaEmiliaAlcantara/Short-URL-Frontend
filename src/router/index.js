@@ -1,5 +1,10 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
+import LoginView from "../views/LoginView";
+import SignupView from "../views/SignupView";
+import TopUrlsView from "../views/TopUrlsView";
+import UserUrlsViews from "../views/UserUrlsView";
+import axios from "axios";
 
 const routes = [
   {
@@ -8,40 +13,40 @@ const routes = [
     component: HomeView,
   },
   {
+    path: "/:shortUrl",
+    redirect: async (to) => {
+      const response = await axios.get(`/url/${to.params.shortUrl}`);
+      window.location.href = response.data.full;
+      return { name: "/home" };
+    },
+  },
+  {
+    path: "/:fullUrl",
+    redirect: async (to) => {
+      const response = await axios.get(`/url/${to.params.fullUrl}`);
+      window.location.href = response.data.full;
+      return { name: "/home" };
+    },
+  },
+  {
     path: "/top-urls",
     name: "top-urls",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "top-urls" */ "../views/TopUrlsView.vue"),
+    component: TopUrlsView,
   },
   {
     path: "/login",
     name: "login",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "login" */ "../views/LoginView.vue"),
+    component: LoginView,
   },
   {
     path: "/signup",
     name: "signup",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "signup" */ "../views/SignupView.vue"),
+    component: SignupView,
   },
   {
     path: "/userUrls",
     name: "userUrls",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "userUrls" */ "../views/UserUrlsView.vue"),
+    component: UserUrlsViews,
   },
 ];
 
