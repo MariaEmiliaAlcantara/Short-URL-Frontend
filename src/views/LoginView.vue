@@ -32,10 +32,14 @@ export default {
   },
   methods: {
     async handleSubmit() {
-      await axios.post("login", {
+      const response = await axios.post("login", {
         email: this.email,
         password: this.password,
       });
+      console.log(response.data);
+      localStorage.setItem("@email", response.data.email);
+
+      this.$router.push("/user-urls");
     },
   },
 };

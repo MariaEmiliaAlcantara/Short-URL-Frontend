@@ -8,10 +8,11 @@
         @submit.prevent="handleSubmit"
       >
         <input
-          type="text"
-          placeholder="Coloque o link aqui"
+          type="url"
+          placeholder="Coloque o link aqui (deve conter https:// ou http://)"
           v-model="fullUrl"
         />
+
         <button type="submit">Encurtar</button>
       </form>
       <p>Use nosso encurtador de URL para criar um link simples e curto</p>
@@ -35,6 +36,7 @@ export default {
   name: "HomeView",
   data() {
     return {
+      email: localStorage.getItem("@email"),
       prefixUrl: "http://localhost:8080/",
       fullUrl: "",
       url: {
@@ -45,12 +47,12 @@ export default {
     };
   },
   methods: {
-    async handleSubmit(event) {
+    async handleSubmit() {
       const response = await axios.post("shortUrls", {
         full: this.fullUrl,
+        email: this.email,
       });
       this.url = response.data;
-      event.target.value.reset();
     },
   },
 };

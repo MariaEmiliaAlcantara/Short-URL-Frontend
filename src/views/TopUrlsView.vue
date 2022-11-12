@@ -12,26 +12,45 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>google.com</td>
-            <td>sh.hGnH</td>
-            <td>10</td>
-          </tr>
-          <tr>
-            <td>google.com</td>
-            <td>sh.hGnH</td>
-            <td>10</td>
-          </tr>
-          <tr>
-            <td>google.com</td>
-            <td>sh.hGnH</td>
-            <td>10</td>
+          <tr v-for="url of urls" :key="url.short">
+            <td>{{ url.full }}</td>
+            <td>{{ prefixUrl }}{{ url.short }}</td>
+            <td>{{ url.clicks }}</td>
           </tr>
         </tbody>
       </table>
     </div>
   </main>
 </template>
+
+<script>
+import axios from "axios";
+
+export default {
+  name: "TopUrlsView",
+  data() {
+    return {
+      prefixUrl: "http://localhost:8080/",
+      urls: [
+        {
+          full: "",
+          short: "",
+          clicks: 0,
+        },
+      ],
+    };
+  },
+  methods: {
+    async getTopUrls() {
+      const response = await axios.get("getAllUrls");
+      this.urls = response.data;
+    },
+  },
+  beforeMount() {
+    this.getTopUrls();
+  },
+};
+</script>
 
 <style scoped>
 .main-wrapper {

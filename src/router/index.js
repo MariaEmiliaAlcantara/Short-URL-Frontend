@@ -44,8 +44,8 @@ const routes = [
     component: SignupView,
   },
   {
-    path: "/userUrls",
-    name: "userUrls",
+    path: "/user-urls",
+    name: "user-urls",
     component: UserUrlsViews,
   },
 ];

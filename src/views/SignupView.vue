@@ -52,8 +52,7 @@ export default {
   },
   methods: {
     async handleSubmit() {
-      console.log("entrei no handle");
-      await axios.post("registerUser", {
+      await axios.post("createUser", {
         name: this.name,
         email: this.email,
         password: this.password,

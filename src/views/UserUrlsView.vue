@@ -13,26 +13,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>google.com</td>
-            <td>sh.hGnH</td>
-            <td>10</td>
-            <td>
-              <button><img src="../assets/trash.svg" /></button>
-            </td>
-          </tr>
-          <tr>
-            <td>google.com</td>
-            <td>sh.hGnH</td>
-            <td>10</td>
-            <td>
-              <button><img src="../assets/trash.svg" /></button>
-            </td>
-          </tr>
-          <tr>
-            <td>google.com</td>
-            <td>sh.hGnH</td>
-            <td>10</td>
+          <tr v-for="url of urls" :key="url.full">
+            <td>{{ url.full }}</td>
+            <td>{{ url.short }}</td>
+            <td>{{ url.clicks }}</td>
             <td>
               <button><img src="../assets/trash.svg" /></button>
             </td>
@@ -42,6 +26,36 @@
     </div>
   </main>
 </template>
+
+<script>
+import axios from "axios";
+
+export default {
+  name: "UserUrlsView",
+  data() {
+    return {
+      email: localStorage.getItem("@email"),
+      prefixUrl: "http://localhost:8080/",
+      urls: [
+        {
+          full: "",
+          short: "",
+          clicks: 0,
+        },
+      ],
+    };
+  },
+  methods: {
+    async getUserUrls() {
+      const response = await axios.get(`getUserUrls/${this.email}`);
+      this.urls = response.data;
+    },
+  },
+  beforeMount() {
+    this.getUserUrls();
+  },
+};
+</script>
 
 <style scoped>
 .main-wrapper {
