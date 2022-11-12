@@ -5,10 +5,10 @@
     </div>
     <div class="links">
       <router-link to="/top-urls">TOP 100</router-link>
-      <router-link v-if="!user" to="/signup">SIGN UP</router-link>
-      <router-link v-if="!user" to="/login">LOGIN</router-link>
-      <router-link v-if="user" to="/userUrls">SEUS LINKS</router-link>
-      <router-link v-if="user" to="/">LOGOUT</router-link>
+      <router-link v-if="email == null" to="/signup">SIGN UP</router-link>
+      <router-link v-if="email == null" to="/login">LOGIN</router-link>
+      <router-link v-if="email" to="/user-urls">SEUS LINKS</router-link>
+      <router-link v-if="email" to="/" @click="logout">LOGOUT</router-link>
     </div>
   </nav>
   <router-view />
@@ -19,8 +19,20 @@ export default {
   name: "Navbar",
   data() {
     return {
-      user: false,
+      email: null,
     };
+  },
+  watch: {
+    $route() {
+      this.email = localStorage.getItem("@email");
+    },
+  },
+  methods: {
+    logout() {
+      localStorage.removeItem("@token");
+      // this.tokenValue = null;
+      (this.tokenValue = ""), this.$router.push("/login");
+    },
   },
 };
 </script>
@@ -32,7 +44,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 3.5rem;
+  padding: 0 3rem;
 
   background: var(--white);
 }
@@ -41,12 +53,12 @@ export default {
   font-size: 1.75rem;
   font-weight: bold;
   text-align: center;
-  width: 12rem;
+  width: 40vh;
   border-bottom: 1px solid var(--black);
 }
 
 .links {
-  width: 80vw;
+  width: 60vw;
   display: flex;
   justify-content: flex-end;
   gap: 2.75rem;
