@@ -13,12 +13,14 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="url of urls" :key="url.full">
+          <tr v-for="url of urls" :key="url.short">
             <td>{{ url.full }}</td>
             <td>{{ url.short }}</td>
             <td>{{ url.clicks }}</td>
             <td>
-              <button><img src="../assets/trash.svg" /></button>
+              <button v-on:click="deleteUrl(url.short)">
+                <img src="../assets/trash.svg" />
+              </button>
             </td>
           </tr>
         </tbody>
@@ -49,6 +51,10 @@ export default {
     async getUserUrls() {
       const response = await axios.get(`getUserUrls/${this.email}`);
       this.urls = response.data;
+    },
+    async deleteUrl(shortUrl) {
+      await axios.delete(`deleteUserUrl/${shortUrl}`);
+      this.getUserUrls();
     },
   },
   beforeMount() {
