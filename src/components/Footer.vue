@@ -10,8 +10,11 @@ export default {
 
 <style scoped>
 .footer {
-  margin-top: -6vh;
+  background-image: url("../assets/textura.png");
+  background-color: var(--green-50p);
+  padding-top: 1vh;
   width: 100vw;
+  height: 6vh;
   text-align: center;
   font-size: 0.75rem;
   color: var(--brown-400);
