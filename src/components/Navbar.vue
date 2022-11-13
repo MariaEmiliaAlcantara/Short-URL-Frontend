@@ -4,11 +4,16 @@
       <router-link urlShorted="false" to="/"><p>SHORT URL</p></router-link>
     </div>
     <div class="links">
+      <router-link to="/">ENCURTAR</router-link>
       <router-link to="/top-urls">TOP 100</router-link>
       <router-link v-if="email == null" to="/signup">SIGN UP</router-link>
       <router-link v-if="email == null" to="/login">LOGIN</router-link>
       <router-link v-if="email" to="/user-urls">SEUS LINKS</router-link>
       <router-link v-if="email" to="/" @click="logout">LOGOUT</router-link>
+      <p v-if="email">
+        OLÁ
+        {{ name.split(" ")[0].toUpperCase() }}
+      </p>
     </div>
   </nav>
   <router-view />
@@ -20,19 +25,25 @@ export default {
   data() {
     return {
       email: null,
+      name: null,
     };
   },
   watch: {
     $route() {
       this.email = localStorage.getItem("@email");
+      this.name = localStorage.getItem("@name");
     },
   },
   methods: {
     logout() {
-      localStorage.removeItem("@token");
-      // this.tokenValue = null;
+      localStorage.removeItem("@email");
+      localStorage.removeItem("@name");
       (this.tokenValue = ""), this.$router.push("/login");
     },
+  },
+  beforeMount() {
+    this.email = localStorage.getItem("@email");
+    this.name = localStorage.getItem("@name");
   },
 };
 </script>
@@ -50,10 +61,10 @@ export default {
 }
 
 .logo {
-  font-size: 1.75rem;
+  font-size: calc(1rem + 0.8vw);
   font-weight: bold;
   text-align: center;
-  width: 40vh;
+  width: 30vh;
   border-bottom: 1px solid var(--black);
 }
 
@@ -67,10 +78,15 @@ export default {
 }
 
 .links a {
-  transition: all 0.5s;
+  transition: all 0.2s;
 }
 
 .links a:hover {
+  color: var(--green-400);
+  text-decoration: underline;
+}
+
+.links p {
   color: var(--green-400);
 }
 </style>
