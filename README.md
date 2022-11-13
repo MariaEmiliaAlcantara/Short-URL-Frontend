@@ -1,7 +1,5 @@
 <h1 align="center">Short URL - Frontend</h1>
 
-<p align="center"><img alt="License" src="https://img.shields.io/static/v1?label=license&message=MIT&color=8257E5&labelColor=000000"></p>
-
 ## ✨ Tecnologias
 
 Esse projeto foi desenvolvido com as seguintes tecnologias:
@@ -33,7 +31,3 @@ Imagem Top 100
 
 # URLs cadastradas do usuário
 Imagem Urls usuário
-
-## 📄 Licença
-
-Esse projeto está sob a licença MIT.
