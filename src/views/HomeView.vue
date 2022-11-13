@@ -9,8 +9,9 @@
       >
         <input
           type="url"
-          placeholder="Coloque o link aqui (deve conter https:// ou http://)"
+          placeholder="Exemplo: https://google.com"
           v-model="fullUrl"
+          required
         />
 
         <button type="submit">Encurtar</button>
@@ -53,6 +54,7 @@ export default {
         email: this.email,
       });
       this.url = response.data;
+      this.fullUrl = "";
     },
   },
 };
@@ -145,8 +147,9 @@ export default {
 }
 
 .short-url-container .result {
-  width: 50vw;
-  height: 8.5vh;
+  max-width: 80vw;
+  flex-wrap: wrap;
+  min-height: 8.5vh;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -157,6 +160,8 @@ export default {
 }
 
 .result a {
+  text-align: center;
+  padding: 2vh 5vw;
   color: var(--white);
   text-decoration: underline;
   transition: all 0.5s;
