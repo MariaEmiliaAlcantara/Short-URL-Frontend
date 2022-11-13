@@ -4,7 +4,12 @@
       <h3>Bem vindo!</h3>
       <label
         >Email
-        <input type="email" v-model="email" placeholder="Endereço de e-mail" />
+        <input
+          type="email"
+          v-model="email"
+          placeholder="Endereço de e-mail"
+          required
+        />
       </label>
       <label
         >Senha
@@ -12,8 +17,10 @@
           type="password"
           v-model="password"
           placeholder="Digite a sua senha"
+          required
         />
       </label>
+      <p v-if="this.message">{{ this.message }}</p>
       <button type="submit">Log in</button>
     </form>
   </main>
@@ -28,18 +35,22 @@ export default {
     return {
       email: "",
       password: "",
+      message: "",
     };
   },
   methods: {
     async handleSubmit() {
-      const response = await axios.post("login", {
-        email: this.email,
-        password: this.password,
-      });
-      console.log(response.data);
-      localStorage.setItem("@email", response.data.email);
-
-      this.$router.push("/user-urls");
+      try {
+        const response = await axios.post("login", {
+          email: this.email,
+          password: this.password,
+        });
+        localStorage.setItem("@email", response.data.email);
+        localStorage.setItem("@name", response.data.name);
+        this.$router.push("/user-urls");
+      } catch (err) {
+        this.message = "Email e/ou senha incorreto(s)";
+      }
     },
   },
 };
@@ -93,6 +104,13 @@ export default {
 .main-container input:focus {
   border: 2px solid var(--green-400);
   color: var(--black);
+}
+
+.main-container p {
+  font-size: 0.875rem;
+  font-weight: bold;
+  margin-bottom: -3vh;
+  color: var(--red-700);
 }
 
 .main-container button {
