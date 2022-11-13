@@ -8,11 +8,17 @@
           type="text"
           v-model="name"
           placeholder="Digite o seu nome completo"
+          required
         />
       </label>
       <label
         >Email
-        <input type="email" v-model="email" placeholder="Endereço de e-mail" />
+        <input
+          type="email"
+          v-model="email"
+          placeholder="Endereço de e-mail"
+          required
+        />
       </label>
       <div class="password">
         <label
@@ -21,7 +27,9 @@
             type="password"
             v-model="password"
             placeholder="Digite a sua senha"
+            required
           />
+          <p>Mínimo 4 caracteres</p>
         </label>
         <label
           >Confirmar senha
@@ -29,6 +37,7 @@
             type="password"
             v-model="password_confirm"
             placeholder="Repita a senha "
+            required
           />
         </label>
       </div>
@@ -60,7 +69,6 @@ export default {
 
       this.$router.push("/login");
     },
-
     validatePassword() {
       if (this.password.length < 4 || this.password_confirm < 4) {
         return true;
@@ -83,7 +91,7 @@ export default {
 
 .main-container {
   width: 30vw;
-  height: 68vh;
+  height: 70vh;
   margin-top: 7vh;
   display: flex;
   flex-direction: column;
@@ -107,6 +115,14 @@ export default {
   font-size: 0.875rem;
   color: var(--green-600);
   font-weight: bold;
+}
+
+label p {
+  font-size: 0.625rem;
+  font-weight: 400;
+  color: var(--black);
+  margin-top: 3px;
+  margin-left: 5px;
 }
 
 .main-container input {
