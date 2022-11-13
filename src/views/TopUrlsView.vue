@@ -1,6 +1,6 @@
 <template>
   <main class="main-wrapper">
-    <div class="main-container">
+    <div class="main-container" v-if="showElements">
       <h1>Top 100 URLs</h1>
       <p>Veja a lista das URLs que foram encurtadas mais visitadas</p>
       <table>
@@ -13,8 +13,17 @@
         </thead>
         <tbody>
           <tr v-for="url of urls" :key="url.short">
-            <td>{{ url.full }}</td>
-            <td>{{ prefixUrl }}{{ url.short }}</td>
+            <td>
+              <a :href="url.full" target="_blank">{{ url.full }}</a>
+            </td>
+            <td>
+              <router-link
+                :to="url.short"
+                target="_blank"
+                v-on:click="url.clicks++"
+                >{{ prefixUrl }}{{ url.short }}</router-link
+              >
+            </td>
             <td>{{ url.clicks }}</td>
           </tr>
         </tbody>
@@ -30,20 +39,16 @@ export default {
   name: "TopUrlsView",
   data() {
     return {
+      showElements: false,
       prefixUrl: "http://localhost:8080/",
-      urls: [
-        {
-          full: "",
-          short: "",
-          clicks: 0,
-        },
-      ],
+      urls: [],
     };
   },
   methods: {
     async getTopUrls() {
       const response = await axios.get("getAllUrls");
       this.urls = response.data;
+      this.showElements = true;
     },
   },
   beforeMount() {
@@ -81,7 +86,7 @@ export default {
 }
 
 .main-container table {
-  width: 77vw;
+  max-width: 90vw;
   margin-top: 3vh;
   border-spacing: 0px 10px;
   text-align: center;
@@ -102,6 +107,17 @@ table tbody tr {
   color: var(--green-600);
 }
 
+table tbody tr a {
+  font-size: 1.125rem;
+  color: var(--green-600);
+  text-decoration: underline;
+  transition: all 0.5s;
+}
+
+table tbody tr a:hover {
+  color: var(--green-400);
+}
+
 th:nth-child(1) {
   border-radius: 12px 0px 0px 12px;
 }
@@ -112,9 +128,11 @@ th:nth-last-child(1) {
 
 td:nth-child(1) {
   border-radius: 12px 0px 0px 12px;
+  width: 50vw;
 }
 
 td:nth-last-child(1) {
   border-radius: 0px 12px 12px 0px;
+  min-width: 10vw;
 }
 </style>
