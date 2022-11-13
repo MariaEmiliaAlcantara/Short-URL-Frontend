@@ -1,6 +1,6 @@
 <template>
   <main class="main-wrapper">
-    <div class="main-container">
+    <div class="main-container" v-if="showElements">
       <h1>URLs cadastradas</h1>
       <p>Veja a lista com todas as URLs que foram encurtadas por você</p>
       <table>
@@ -14,8 +14,17 @@
         </thead>
         <tbody>
           <tr v-for="url of urls" :key="url.short">
-            <td>{{ url.full }}</td>
-            <td>{{ url.short }}</td>
+            <td>
+              <a :href="url.full" target="_blank">{{ url.full }}</a>
+            </td>
+            <td>
+              <router-link
+                :to="url.short"
+                target="_blank"
+                v-on:click="url.clicks++"
+                >{{ prefixUrl }}{{ url.short }}</router-link
+              >
+            </td>
             <td>{{ url.clicks }}</td>
             <td>
               <button v-on:click="deleteUrl(url.short)">
@@ -36,21 +45,17 @@ export default {
   name: "UserUrlsView",
   data() {
     return {
+      showElements: false,
       email: localStorage.getItem("@email"),
       prefixUrl: "http://localhost:8080/",
-      urls: [
-        {
-          full: "",
-          short: "",
-          clicks: 0,
-        },
-      ],
+      urls: [],
     };
   },
   methods: {
     async getUserUrls() {
       const response = await axios.get(`getUserUrls/${this.email}`);
       this.urls = response.data;
+      this.showElements = true;
     },
     async deleteUrl(shortUrl) {
       await axios.delete(`deleteUserUrl/${shortUrl}`);
@@ -114,23 +119,38 @@ table tbody tr {
   line-height: 0;
 }
 
+table tbody tr a {
+  font-size: 1.125rem;
+  color: var(--green-600);
+  text-decoration: underline;
+  transition: all 0.5s;
+}
+
+table tbody tr a:hover {
+  color: var(--green-400);
+}
+
 th:nth-child(1) {
   border-radius: 12px 0px 0px 12px;
 }
 
 th:nth-last-child(1) {
   border-radius: 0px 12px 12px 0px;
-  width: 2vw;
 }
 
 td:nth-child(1) {
   border-radius: 12px 0px 0px 12px;
+  width: 50vw;
+}
+
+td:nth-child(3) {
+  min-width: 10vw;
 }
 
 td:nth-last-child(1) {
   border-radius: 0px 12px 12px 0px;
   text-align: end;
-  width: vw;
+  width: 7vw;
 }
 
 td button {
