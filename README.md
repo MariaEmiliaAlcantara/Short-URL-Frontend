@@ -25,16 +25,21 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - A aplicação estará disponível em `http://localhost:8080`!
 
 # Sign up
-Imagem Sign Up
+![signup](https://user-images.githubusercontent.com/104785776/201655636-024f7316-906e-417e-a6ae-8fb46cce76b7.png)
+
 
 # Login
-Imagem Login
+![login](https://user-images.githubusercontent.com/104785776/201655656-9cd42e56-d126-44ee-9bb0-20a528a50365.png)
+
 
 # Encurtar URL
-Imagem Home
+![home](https://user-images.githubusercontent.com/104785776/201655680-71751e9f-2f17-4923-a830-96b729397147.png)
+
 
 # Top 100 URLs mais acessadas
-Imagem Top 100
+![topUrls](https://user-images.githubusercontent.com/104785776/201655724-230f35c3-16c2-4f52-9f67-e467d5fec99d.png)
+
 
 # URLs cadastradas do usuário
-Imagem Urls usuário
+![userUrls](https://user-images.githubusercontent.com/104785776/201655743-9de0d214-57d1-4aca-99b9-fc228966c8b2.png)
+
