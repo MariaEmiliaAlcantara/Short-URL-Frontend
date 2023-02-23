@@ -47,7 +47,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 - O protótipo do site desenvolvido está disponível no link abaixo:
 
- [https://www.figma.com/file/OijEDS9uPMeIejNVlKzghw/Desafio-Speedio?node-id=0%3A1](https://www.figma.com/file/OijEDS9uPMeIejNVlKzghw/Desafio-Speedio?node-id=0%3A1)
+ [https://www.figma.com/file/OijEDS9uPMeIejNVlKzghw/SHORT-URL-APP?node-id=0%3A1&t=kvvIXZhvPS4R1TxJ-0](https://www.figma.com/file/OijEDS9uPMeIejNVlKzghw/SHORT-URL-APP?node-id=0%3A1&t=kvvIXZhvPS4R1TxJ-0)
 
 
 ## 📷 Telas do aplicativo
