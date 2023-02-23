@@ -16,14 +16,14 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 ## 🚀 Como executar
 
 #### 1. Rodar o Backend
-- Vá para o github do projeto backend: [https://github.com/MariaEmiliaAlcantara/Speedio-Challenge-Backend](https://github.com/MariaEmiliaAlcantara/Speedio-Challenge-Backend)
-- Clone o repositório: `git clone git@github.com:MariaEmiliaAlcantara/Speedio-Challenge-Backend.git`
+- Vá para o github do projeto backend: [https://github.com/MariaEmiliaAlcantara/Short-URL-Backend](https://github.com/MariaEmiliaAlcantara/Short-URL-Backend)
+- Clone o repositório: `git clone git@github.com:MariaEmiliaAlcantara/Short-URL-Backend.git`
 - Rode `npm install` para baixar as dependências
 - Rode o `npm run start` para iniciar a aplicação.
 - O backend estará disponível em `http://localhost:5000`!
 
 #### 2. Rodar o Frontend
-- Clone este repositório: `git clone git@github.com:MariaEmiliaAlcantara/Speedio-Challenge-Frontend.git`
+- Clone este repositório: `git clone git@github.com:MariaEmiliaAlcantara/Short-URL-Frontend.git`
 - Rode `npm install` para baixar as dependências
 - Rode o `npm run serve` para iniciar a aplicação
 - A aplicação estará disponível em `http://localhost:8080`!
